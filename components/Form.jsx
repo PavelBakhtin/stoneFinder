@@ -154,9 +154,9 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
 					<button
 						type="submit"
 						disabled={submitting}
-						className="px-5 py-1.5 text-sm bg-primary-orange text-white disabled:opacity-75 	rounded-full"
+						className="px-5 py-1.5 text-sm bg-primary-orange text-white disabled: bg-primary-grey rounded-full"
 					>
-						{submitting ? " Створити" : "Заповніть всі поля"}
+						{/* {submitting ? " Створити" : "Заповніть всі поля"} */}Зберегти
 					</button>
 				</div>
 			</form>

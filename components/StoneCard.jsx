@@ -30,8 +30,13 @@ const StoneCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 	};
 
 	return (
-		<div className="prompt_card">
-			<div className="flex justify-between items-start gap-5">
+		<div className="prompt_card  ">
+			<div className="flex justify-center   bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 my-1">
+				<h3 className="font-satoshi font-bold text-white">
+					{post.type === "Sell" ? "Пропоную" : "Шукаю"}
+				</h3>
+			</div>
+			<div className="flex justify-between items-center items-start gap-5">
 				<div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
 					<Image
 						src={post.creator.image}
@@ -42,12 +47,13 @@ const StoneCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 						onClick={handleProfileClick}
 					/>
 					<div className="flex flex-col">
-						<h3 className="font-satoshi font-semibold text-gray-500">
+						<h3 className="font-satoshi font-semibold text-gray-500"></h3>
+						<p className="font-inter font-sm text-gray-500">
+							<span className="font-satoshi font-semibold text-gray-500">
+								Iм'я:{" "}
+							</span>
 							{post.creator.username}
-						</h3>
-						<h3 className="font-satoshi font-semibold text-gray-500">
-							{post.type}
-						</h3>
+						</p>
 						<p className="font-inter font-sm text-gray-500">
 							<span className="font-satoshi font-semibold text-gray-500">
 								Матеріал:{" "}
@@ -88,7 +94,7 @@ const StoneCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 						)}
 					</div>
 				</div>
-				<div className="copy_btn" onClick={handleCopy}>
+				{/* <div className="copy_btn" onClick={handleCopy}>
 					<Image
 						src={
 							copied === post.prompt
@@ -99,7 +105,7 @@ const StoneCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 						height={12}
 						alt="copy_image"
 					/>
-				</div>
+				</div> */}
 			</div>
 			<p className="my-4 font-satoshi font-sm">{post.prompt}</p>
 			<p
@@ -109,7 +115,11 @@ const StoneCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 				{post.tag}
 			</p>
 			<div>
-				<button type="button" onClick={openModal}>
+				<button
+					className="font-inter font-sm blue_gradient cursor-pointer  absolute inset-x-0 bottom-1"
+					type="button"
+					onClick={openModal}
+				>
 					Детальніше
 				</button>
 				<ReactModal
@@ -144,6 +154,11 @@ const StoneCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 					shouldCloseOnOverlayClick={false}
 					className="flex flex-center space-y-2"
 				>
+					<div className="flex justify-center absolute inset-x-0 top-1">
+						<h3 className="font-satoshi font-bold text-orange-600">
+							{post.type === "Sell" ? "Пропоную" : "Шукаю"}
+						</h3>
+					</div>
 					<Image
 						src={post.creator.image}
 						alt="user_image"
@@ -153,12 +168,12 @@ const StoneCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 						onClick={handleProfileClick}
 					/>
 					<div className="flex flex-col">
-						<h3 className="font-satoshi font-semibold text-gray-500">
+						<p className="font-inter font-sm text-gray-500">
+							<span className="font-satoshi font-semibold text-gray-500">
+								Ім'я:{" "}
+							</span>
 							{post.creator.username}
-						</h3>
-						<h3 className="font-satoshi font-semibold text-gray-500">
-							{post.type}
-						</h3>
+						</p>
 						<p className="font-inter font-sm text-gray-500">
 							<span className="font-satoshi font-semibold text-gray-500">
 								Матеріал:{" "}
