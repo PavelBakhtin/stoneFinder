@@ -18,10 +18,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
 			<h1 className="head_text text-left">
 				<span className="blue_gradient">Створити оголошення</span>
 			</h1>
-			{/* <p className="desc text-left max-w-md">
-				 and share amazing prompts with the world, and let your
-				imagination run wild with any AI-powered platform.
-			</p> */}
+			
 			<form
 				onSubmit={handleSubmit}
 				className="mt-10 w-full max-w-2x1 flex flex-col gap7 glassmorphism"

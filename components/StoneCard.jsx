@@ -31,11 +31,15 @@ const StoneCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
 	return (
 		<div className="prompt_card  ">
-			<div className="flex justify-center   bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 my-1">
+			{post.type === "Sell" ? <div className="flex justify-center   bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 my-1">
 				<h3 className="font-satoshi font-bold text-white">
-					{post.type === "Sell" ? "Пропоную" : "Шукаю"}
+				Пропоную
 				</h3>
-			</div>
+			</div> : <div className="flex justify-center     bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+				<h3 className="font-satoshi font-bold text-white">
+				Шукаю
+				</h3>
+			</div>}
 			<div className="flex justify-between items-center items-start gap-5">
 				<div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
 					<Image
