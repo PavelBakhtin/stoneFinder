@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
+import Image from "next/image";
 import StoneCard from "./StoneCard";
 
-const StoneCardList = ({ data, handleTagClick }) => {
+const StoneCardList = ({ data,  handleMaterialClick }) => {
 	return (
 		<div className="mt-6 prompt_layout">
 			{data.map((post) => (
-				<StoneCard key={post._id} post={post} handleTagClick={handleTagClick} />
+				<StoneCard key={post._id} post={post}  handleMaterialClick={ handleMaterialClick} />
 			))}
 		</div>
 	);
@@ -32,8 +32,6 @@ const Feed = () => {
 	useEffect( () => {
 		 fetchPosts();
 	
-		 
-		
 	}, []);
 	
 	useEffect(() => {	
@@ -57,7 +55,9 @@ const Feed = () => {
 				regex.test(item.info)
 		);
 	};
-
+	const handleClearSearch = () => {
+		setSearchText('');
+	}
 	const handleSearchChange = (e) => {
 		clearTimeout(searchTimeout);
 		setSearchText(e.target.value);
@@ -74,10 +74,10 @@ const Feed = () => {
 	setType(e.target.value)
 
 }
-	const handleTagClick = (tagName) => {
-		setSearchText(tagName);
-
-		const searchResult = filterPosts(tagName);
+	const handleMaterialClick = (material) => {
+		setSearchText(material);
+		
+		const searchResult = filterPosts(material);
 		setSearchedResults(searchResult);
 	};
 
@@ -91,26 +91,29 @@ const Feed = () => {
 					onChange={handleSearchChange}
 					required			className="search_input peer"
 				/>
+			  {searchText !== '' && <Image className='absolute right-2 cursor-pointer' onClick={handleClearSearch} src="/assets/icons/close.svg" alt="close" width={12} height={12}/>}
 			</form>
 			<ul className="flex gap-3 mt-3">
-			<li><input checked={type === 'All'} id="All" className="hidden peer" type='radio' name='choose' value='All' onChange={handleChange} />
-				<label  	 htmlFor="All" className="p-2 min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Всі</label>
+				<li>
+				<input checked={type === 'All'} id="All" className="hidden peer" type='radio' name='choose' value='All' onChange={handleChange} />
+				<label htmlFor="All" className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Всі</label>
 				</li>
-			<li>	<input checked={type === 'Buy'} id="Buy" className="hidden peer" type='radio' name='choose' value='Buy' onChange={handleChange} />
-				<label htmlFor="Buy" className="p-2 min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Шукаю</label>
+				<li>
+					<input checked={type === 'Buy'} id="Buy" className="hidden peer" type='radio' name='choose' value='Buy' onChange={handleChange} />
+				<label htmlFor="Buy" className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Шукаю</label>
 		</li>
 				<li>
-					<input checked={type === 'Sell'} id="Sell" className="hidden peer" type='radio' name='choose' value='Sell' onChange={handleChange} />
-				<label htmlFor="Sell" className="p-2 min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Пропоную</label>
+				<input checked={type === 'Sell'} id="Sell" className="hidden peer" type='radio' name='choose' value='Sell' onChange={handleChange} />
+				<label htmlFor="Sell" className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Пропоную</label>
 				</li>
 			</ul>
 			{/* All Prompts */}
 			{searchText ? (
-				<StoneCardList data={searchedResults} handleTagClick={handleTagClick} />
+				<StoneCardList data={searchedResults} handleMaterialClick={handleMaterialClick} />
 			) : filteredPosts.length === 0 ? (
-				<StoneCardList data={allPosts} handleTagClick={handleTagClick} />
+				<StoneCardList data={allPosts} handleMaterialClick={handleMaterialClick} />
 			) :  (
-				<StoneCardList data={filteredPosts} handleTagClick={handleTagClick} />
+				<StoneCardList data={filteredPosts} handleMaterialClick={handleMaterialClick} />
 			)}
 		</section>
 	);

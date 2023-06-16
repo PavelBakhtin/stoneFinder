@@ -6,7 +6,7 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
 				<span className="blue_gradient">{name} Профіль</span>
 			</h1>
 			<p className="desc text-left">{desc}</p>
-			<div className="mt-10 Stone_layout">
+			<div className="mt-10 prompt_layout ">
 				{data.map((post) => (
 					<StoneCard
 						key={post._id}

@@ -2,17 +2,20 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 const Form = ({ post, setPost, submitting, handleSubmit }) => {
-	// const [selected, setSelected] = useState("");
-	// useEffect(() => {
-	// 	setPost({ type: selected });
+	const [selected, setSelected] = useState("");
+	useEffect(() => {
+		setPost({ type: 'Sell' });
 
-	// 	console.log(post.type);
-	// }, []);
+		console.log(post.type);
+	}, []);
 	const handleChange = (event) => {
+		console.log(post.type);
+		setSelected(event.target.value);
 		console.log(event.target.value);
-		setPost({ type: event.target.value });
-		// setSelected(event.target.value);
+		
 	};
+	useEffect(()=>{setPost({ type: selected })},[selected])
+	
 	return (
 		<section className="w-full max-w-full flex-start flex-col">
 			<h1 className="head_text text-left">
@@ -21,29 +24,30 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
 			
 			<form
 				onSubmit={handleSubmit}
-				className="mt-10 w-full max-w-2x1 flex flex-col gap7 glassmorphism"
+				className="mt-10 w-full max-w-2x1 flex flex-col gap-5 glassmorphism"
 			>
-				<div>
-					<div>
-						<input
+					<ul className="flex gap-3 mt-3" required>
+						<li><input  className="hidden peer" 
 							type="radio"
 							id="Sell"
 							name="choose"
-							value="Sell"
+							value='Sell'
+							checked={selected === 'Sell'}
 							onChange={handleChange}
 						/>
-						<label htmlFor="Sell">Пропоную</label>
-
-						<input
+						<label className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" htmlFor="Sell">Пропоную</label>
+</li>
+						<li><input  className="hidden peer"
 							type="radio"
 							id="Buy"
 							name="choose"
 							value="Buy"
-							onChange={handleChange}
+							checked={selected === "Buy"}
+							onChange={handleChange}	
 						/>
-						<label htmlFor="Buy">Шукаю</label>
-					</div>
-				</div>
+						<label className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" htmlFor="Buy">Шукаю</label>
+					</li></ul>
+				
 
 				<label>
 					<span className="font-satoshi font-semibold text-base text-gray-700">

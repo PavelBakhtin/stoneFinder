@@ -15,6 +15,7 @@ export const POST = async (req) => {
 			type,
 			location,
 		});
+		console.log(tel)
 		await newPost.save();
 		return new Response(JSON.stringify(newPost), {
 			status: 201,

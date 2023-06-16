@@ -17,8 +17,8 @@ const PostSchema = new Schema({
 		type: String,
 		requires: [true, "Price is required"],
 	},
-	number: {
-		type: Number,
+	tel: {
+		type: String,
 		requires: [true, "Tel is required"],
 	},
 	info: {
