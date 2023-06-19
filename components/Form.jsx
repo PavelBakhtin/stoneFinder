@@ -1,20 +1,17 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-const Form = ({ post, setPost, submitting, handleSubmit }) => {
-	const [selected, setSelected] = useState("");
-	useEffect(() => {
-		setPost({ type: 'Sell' });
+import { useEffect } from "react";
 
-		console.log(post.type);
+const Form = ({ post, setPost, submitting, handleSubmit }) => {
+	
+	useEffect(() => {
+		setPost({ ...post, type: 'Sell' });
 	}, []);
 	const handleChange = (event) => {
-		console.log(post.type);
-		setSelected(event.target.value);
-		console.log(event.target.value);
+			setPost({ ...post, type: event.target.value })
 		
 	};
-	useEffect(()=>{setPost({ type: selected })},[selected])
+
 	
 	return (
 		<section className="w-full max-w-full flex-start flex-col">
@@ -27,22 +24,24 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
 				className="mt-10 w-full max-w-2x1 flex flex-col gap-5 glassmorphism"
 			>
 					<ul className="flex gap-3 mt-3" required>
-						<li><input  className="hidden peer" 
+					<li><input className="hidden peer" 
+						defaultChecked
 							type="radio"
 							id="Sell"
 							name="choose"
 							value='Sell'
-							checked={selected === 'Sell'}
+							
 							onChange={handleChange}
 						/>
 						<label className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" htmlFor="Sell">Пропоную</label>
 </li>
-						<li><input  className="hidden peer"
+					<li><input className="hidden peer"
+						
 							type="radio"
 							id="Buy"
 							name="choose"
 							value="Buy"
-							checked={selected === "Buy"}
+							
 							onChange={handleChange}	
 						/>
 						<label className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" htmlFor="Buy">Шукаю</label>

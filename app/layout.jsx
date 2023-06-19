@@ -4,11 +4,11 @@ import Provider from "@components/Provider";
 ("@components/Provider");
 export const metadata = {
 	title: "Stonefinder",
-	description: "Discover & Share AI Prompts",
+	description: "Discover & Share stone leftovers",
 };
 const RootLayout = ({ children }) => {
 	return (
-		<html lang="en">
+		<html lang="uk">
 			<body>
 				<Provider>
 					<div className="main">

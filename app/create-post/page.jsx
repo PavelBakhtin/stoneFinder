@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Form from "@components/Form";
+import dateFormat from "dateformat";
 
 const CreatePost = () => {
 	const router = useRouter();
@@ -21,10 +22,13 @@ const CreatePost = () => {
 		price: "",
 		type: "",
 		location: "",
+		date:''
 	});
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setSubmitting(true);
+		const now = new Date();
+		const dateNow = dateFormat(now, 'HH:MM dd/mm/yyyy')
 		try {
 			const response = await fetch("/api/post/new", {
 				method: "POST",
@@ -37,6 +41,7 @@ const CreatePost = () => {
 					info: post.info,
 					type: post.type,
 					location: post.location,
+					date:dateNow
 				}),
 			});
 			if (response.ok) {

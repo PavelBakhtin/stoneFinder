@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@components/Form";
-
+import dateFormat from "dateformat";
 const EditPost = () => {
 	const searchParams = useSearchParams();
 	const postId = searchParams.get("id");
@@ -11,6 +11,8 @@ const EditPost = () => {
 		const getPostDetails = async () => {
 			const response = await fetch(`/api/post/${postId}`);
 			const data = await response.json();
+			const now = new Date();
+		const dateNow = dateFormat(now, 'HH:MM dd/mm/yyyy')
 			setPost({
 				info: data.info,
 				material: data.material,
@@ -18,6 +20,7 @@ const EditPost = () => {
 				tel: data.tel,
 				price: data.price,
 				location: post.location,
+				date:dateNow
 			});
 		};
 		if (postId) getPostDetails();

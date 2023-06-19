@@ -1,7 +1,7 @@
 import { connectToDb } from "@utils/database";
 import Post from "@models/post";
 export const POST = async (req) => {
-	const { userId, material, dimensions, price, tel, info, type, location } =
+	const { userId, material, dimensions, price, tel, info, type, location, date } =
 		await req.json();
 	try {
 		await connectToDb();
@@ -14,6 +14,7 @@ export const POST = async (req) => {
 			dimensions,
 			type,
 			location,
+			date
 		});
 		console.log(tel)
 		await newPost.save();

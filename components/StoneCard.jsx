@@ -44,7 +44,7 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 			<div className="flex flex-center justify-between items-center items-start gap-5">
 				<div className="flex-1 flex justify-start items-center gap-3">
 					
-					<div className="flex flex-col mt-3" >
+					<div className="flex flex-col mt-3 mb-5" >
 												<p className="font-inter font-sm text-gray-500 cursor-pointer"
 						onClick={() => handleMaterialClick && handleMaterialClick(post.material)}
 						>
@@ -71,11 +71,11 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 				</div>
 				
 			</div>
-			<p className="my-4 font-satoshi font-sm">{post.prompt}</p>
+			<div className="absolute bottom-2 left-4"><span className="font-sm font-sm text-gray-500">{post.date}</span></div>
 			
 			<div>
 				<button
-					className="font-inter font-sm blue_gradient cursor-pointer  absolute inset-x-0 bottom-1"
+					className="font-inter font-sm blue_gradient cursor-pointer  absolute right-3 bottom-2"
 					type="button"
 					onClick={openModal}
 				>

@@ -33,6 +33,10 @@ const PostSchema = new Schema({
 		type: String,
 		requires: [false],
 	},
+	date: {
+		type: String,
+		requires: [true],
+	}
 });
 
 const Post = models.Post || model("Post", PostSchema);
