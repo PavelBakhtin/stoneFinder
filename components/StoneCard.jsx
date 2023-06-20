@@ -71,7 +71,7 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 				</div>
 				
 			</div>
-			<div className="absolute bottom-2 left-4"><span className="font-sm font-sm text-gray-500">{post.date}</span></div>
+			<div className="absolute bottom-2 left-5"><span className="font-sm font-sm text-gray-500">{post.date}</span></div>
 			
 			<div>
 				<button
@@ -180,7 +180,9 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 							</div>
 						
 					</div>
-					<button type="button" onClick={closeModal} className="font-inter font-sm blue_gradient cursor-pointer  absolute inset-x-0 bottom-1">
+					<div className="absolute bottom-2 left-5"><span className="font-sm font-sm text-gray-500">{post.date}</span></div>
+			
+					<button type="button" onClick={closeModal} className="font-inter font-sm blue_gradient cursor-pointer  absolute right-5 bottom-2">
 							Закрити
 						</button>
 				</ReactModal>
