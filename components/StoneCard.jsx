@@ -45,13 +45,20 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 				<div className="flex-1 flex justify-start items-center gap-3">
 					
 					<div className="flex flex-col mt-3 mb-5" >
+						<p className="font-inter font-sm text-gray-500" onClick={handleProfileClick} >
+							<span  className="font-satoshi font-semibold text-gray-500 ">
+								Ім'я: {' '}
+							</span>
+							<span className='hover:text-orange-600 cursor-pointer'>{ post.creator.username}</span>
+						</p>
 												<p className="font-inter font-sm text-gray-500 cursor-pointer"
 						onClick={() => handleMaterialClick && handleMaterialClick(post.material)}
 						>
+
 							<span className="font-satoshi font-semibold text-gray-500 " >
 								Матеріал:{" "}
 							</span>
-							{post.material}
+							<span className='hover:text-orange-600 cursor-pointer'>{post.material}</span>
 						</p>
 						<p className="font-inter font-sm text-gray-500">
 							<span className="font-satoshi font-semibold text-gray-500">
@@ -111,7 +118,7 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 			
 					contentLabel="Example Modal"
 					shouldCloseOnOverlayClick={true}
-					className="prompt_card "
+					className="modal_card"
 				>
 					{post.type === "Sell" ? <div className="flex justify-center   bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 my-1">
 				<h3 className="font-satoshi font-bold text-white">
@@ -122,23 +129,24 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 				Шукаю
 				</h3>
 					</div>}
-					<div className="flex justify-start items-center gap-6 p-5 pt-3">
-						<div>
+					<div className=" gap-6 p-5 pt-3">
+						{/* flex justify-start items-center */}
+						{/* <div>
 							<Image
 						src={post.creator.image}
 						alt="user_image"
 						width={40}
 						height={40}
 						className="rounded-full object-contain cursor-pointer"
-						onClick={handleProfileClick}
+						
 					/> 
-				</div>
-					<div className="flex flex-col">
-						<p className="font-inter font-sm text-gray-500">
-							<span className="font-satoshi font-semibold text-gray-500">
-								Ім'я:{" "}
+				</div> */}
+					{/* <div className="flex flex-col"> */}
+						<p className="font-inter font-sm text-gray-500 " onClick={handleProfileClick}>
+							<span className="font-satoshi font-semibold text-gray-500 ">
+								Ім'я: {' '}
 							</span>
-							{post.creator.username}
+							<span className='hover:text-orange-600 cursor-pointer'>{ post.creator.username}</span>
 						</p>
 						<p className="font-inter font-sm text-gray-500">
 							<span className="font-satoshi font-semibold text-gray-500">
@@ -152,14 +160,14 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 							</span>
 							{post.dimensions}
 						</p>
-						<p className="font-inter font-sm text-gray-500">
+						<p className="font-inter font-sm text-gray-500 ">
 							<span className="font-satoshi font-semibold text-gray-500">
 								Телефон:{" "}
 							</span>
-							 <a href={`tel:${post.tel}`}>{post.tel}</a>
+							 <a className='hover:text-orange-600 cursor-pointer' href={`tel:${post.tel}`}>{post.tel}</a>
 						</p>
 						<p className="font-inter font-sm text-gray-500">
-							<span className="font-satoshi font-semibold text-black-500">
+							<span className="font-satoshi font-semibold text-black-500 ">
 								Локація:{" "}
 							</span>
 							{post.location}
@@ -173,13 +181,13 @@ const StoneCard = ({ post, handleMaterialClick, handleEdit, handleDelete }) => {
 						{post.info && (
 							<p className="font-inter font-sm text-gray-500">
 								{" "}
-								<span>Коментар: </span>
+								<span className="font-satoshi font-semibold text-black-500">Коментар: </span>
 								{post.info}
 							</p>
 							)}
 							</div>
 						
-					</div>
+					{/* </div> */}
 					<div className="absolute bottom-2 left-5"><span className="font-sm font-sm text-gray-500">{post.date}</span></div>
 			
 					<button type="button" onClick={closeModal} className="font-inter font-sm blue_gradient cursor-pointer  absolute right-5 bottom-2">

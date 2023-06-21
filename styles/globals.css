@@ -86,7 +86,7 @@
 }
 
 .head_text {
-	@apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+	@apply  text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
 }
 
 .orange_gradient {
@@ -120,7 +120,7 @@
 .prompt_layout {
 	@apply grid xl:grid-cols-3 xl:gap-6 md:grid-cols-2 md:gap-4 sm:gap-3 sm:grid-cols-1 gap-y-4;
 }
-/* space-y-6 py-4 sm:columns-2 sm:gap-6 xl:columns-3 */
+
 /* Feed Component */
 .feed {
 	@apply mt-12 mx-auto w-full  flex justify-center items-center flex-col gap-2;
@@ -150,9 +150,11 @@
 
 /* PromptCard Component */
 .prompt_card {
-	@apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-5 pt-2 pb-6 backdrop-blur-lg backdrop-filter overflow-hidden md:w-[360px] w-full ;
+	@apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-5 pt-2 pb-6 backdrop-blur-lg backdrop-filter overflow-hidden md:max-w-[360px] w-full ;
 }
-
+.modal_card {
+	@apply flex-1 rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-8 backdrop-blur-lg backdrop-filter overflow-hidden w-3/4 md:w-1/2 lg:w-1/3
+}
 .flex-center {
 	@apply flex justify-center items-center;
 }

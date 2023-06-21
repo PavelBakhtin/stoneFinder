@@ -83,7 +83,7 @@ const Feed = () => {
 
 	return (
 		<section className="feed">
-			<form className="relative w-full flex-center">
+			<form className="relative w-full md:w-3/5 flex-center">
 				<input
 					type="text"
 					placeholder="Шукайте за назвою або артикулом"
@@ -99,13 +99,14 @@ const Feed = () => {
 				<label htmlFor="All" className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Всі</label>
 				</li>
 				<li>
-					<input checked={type === 'Buy'} id="Buy" className="hidden peer" type='radio' name='choose' value='Buy' onChange={handleChange} />
-				<label htmlFor="Buy" className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Шукаю</label>
-		</li>
-				<li>
 				<input checked={type === 'Sell'} id="Sell" className="hidden peer" type='radio' name='choose' value='Sell' onChange={handleChange} />
 				<label htmlFor="Sell" className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Пропоную</label>
 				</li>
+				<li>
+					<input checked={type === 'Buy'} id="Buy" className="hidden peer" type='radio' name='choose' value='Buy' onChange={handleChange} />
+				<label htmlFor="Buy" className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500" >Шукаю</label>
+		</li>
+				
 			</ul>
 			{/* All Prompts */}
 			{searchText ? (
