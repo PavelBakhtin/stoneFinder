@@ -1,17 +1,25 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import Select from 'react-select';
-import stoneOptions from '@utils/data';
 
+import stoneOptions from '@utils/data';
+import CreatableSelect from 'react-select/creatable';
 const Form = ({ post, setPost, submitting, handleSubmit }) => {
+   const [selected, setSelected] = useState('');
+   // const [color, setcolor] = useState(null);
+   // const [dimensions, setDimensions] = useState(null);
+   // const [price, setPrice] = useState(null);
+   // const [tel, setTel] = useState(null);
+   // const [location, setLocation] = useState(null);
+   // const [info, setInfo] = useState(null);
+
    useEffect(() => {
       setPost({ ...post, type: 'Sell' });
    }, []);
    const handleChange = (event) => {
       setPost({ ...post, type: event.target.value });
    };
-   const [selectedOption, setSelectedOption] = useState(null);
+
    return (
       <section className="w-full max-w-full flex-start flex-col">
          <h1 className="head_text text-left">
@@ -60,25 +68,35 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
 
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
-                  Матеріал
+                  Матеріал*
                </span>
-               <Select
+               <CreatableSelect
+                  placeholder="Оберіть виробника"
+                  required
+                  formatCreateLabel={(inputValue) => inputValue}
                   options={stoneOptions}
-                  //   defaultValue={selectedOption}
-                  onChange={setSelectedOption}
+                  defaultValue={selected}
+                  onChange={(e) => {
+                     setSelected(e);
+                     if (e === null) {
+                        return;
+                     }
+                     setPost({
+                        ...post,
+                        manufacturer: e.value
+                     });
+                  }}
                   isClearable
                />
-               {selectedOption && (
+               {selected && (
                   <input
-                     value={post.material}
+                     value={post.color}
                      required
                      onChange={(e) => {
                         setPost({
                            ...post,
-                           material: `${selectedOption.value} ${e.target.value}`
+                           color: e.target.value
                         });
-                        // console.log(`${selectedOption.value} ${e.target.value}`);
-                        console.log(post.material);
                      }}
                      placeholder="Назва декору, артикул..."
                      className="form_input"
@@ -87,7 +105,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
             </label>
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
-                  Розміри
+                  Розміри*
                   {/* <span className="font-normal">(Довжина, ширина, товщина)</span> */}
                </span>
 
@@ -103,30 +121,13 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
             </label>
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
-                  Приблизна вартість
-                  {/* <span className="font-normal">
-							(#product, #webdevelopment, #idea)
-						</span> */}
-               </span>
-
-               <input
-                  value={post.price}
-                  required
-                  onChange={(e) => {
-                     setPost({ ...post, price: e.target.value });
-                  }}
-                  placeholder="Зручна валюта"
-                  className="form_input"
-               ></input>
-            </label>
-            <label>
-               <span className="font-satoshi font-semibold text-base text-gray-700">
-                  Контакт
+                  Телефон*
                   {/* <span className="font-normal">
 							(#product, #webdevelopment, #idea)
 						</span> */}
                </span>
                <input
+                  autoComplete="tel"
                   value={post.tel}
                   required
                   onChange={(e) => {
@@ -138,6 +139,24 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
             </label>
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
+                  Приблизна вартість
+                  {/* <span className="font-normal">
+							(#product, #webdevelopment, #idea)
+						</span> */}
+               </span>
+
+               <input
+                  value={post.price}
+                  onChange={(e) => {
+                     setPost({ ...post, price: e.target.value });
+                  }}
+                  placeholder="Зручна валюта"
+                  className="form_input"
+               ></input>
+            </label>
+
+            <label>
+               <span className="font-satoshi font-semibold text-base text-gray-700">
                   Локація
                   {/* <span className="font-normal">
 							(#product, #webdevelopment, #idea)
@@ -145,7 +164,6 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                </span>
                <input
                   value={post.location}
-                  required
                   onChange={(e) => {
                      setPost({ ...post, location: e.target.value });
                   }}

@@ -4,14 +4,14 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import StoneCard from './StoneCard';
 
-const StoneCardList = ({ data, handleMaterialClick }) => {
+const StoneCardList = ({ data, handlecolorClick }) => {
    return (
       <div className="mt-6 prompt_layout">
          {data.map((post) => (
             <StoneCard
                key={post._id}
                post={post}
-               handleMaterialClick={handleMaterialClick}
+               handlecolorClick={handlecolorClick}
             />
          ))}
       </div>
@@ -50,7 +50,7 @@ const Feed = () => {
       return allPosts.filter(
          (item) =>
             regex.test(item.creator.username) ||
-            regex.test(item.material) ||
+            regex.test(item.color) ||
             regex.test(item.info)
       );
    };
@@ -72,10 +72,10 @@ const Feed = () => {
    const handleChange = (e) => {
       setType(e.target.value);
    };
-   const handleMaterialClick = (material) => {
-      setSearchText(material);
+   const handlecolorClick = (color) => {
+      setSearchText(color);
 
-      const searchResult = filterPosts(material);
+      const searchResult = filterPosts(color);
       setSearchedResults(searchResult);
    };
 
@@ -168,17 +168,17 @@ const Feed = () => {
          {searchText ? (
             <StoneCardList
                data={searchedResults}
-               handleMaterialClick={handleMaterialClick}
+               handlecolorClick={handlecolorClick}
             />
          ) : filteredPosts.length === 0 ? (
             <StoneCardList
                data={allPosts}
-               handleMaterialClick={handleMaterialClick}
+               handlecolorClick={handlecolorClick}
             />
          ) : (
             <StoneCardList
                data={filteredPosts}
-               handleMaterialClick={handleMaterialClick}
+               handlecolorClick={handlecolorClick}
             />
          )}
       </section>
