@@ -131,11 +131,11 @@
 
 /* Form Component */
 .form_textarea {
-   @apply w-full flex rounded-lg h-[100px] mt-2 p-3 text-sm text-gray-500 outline-0 focus:ring-2 focus:ring-blue-600;
+   @apply w-full flex rounded-lg h-[100px] mt-2 p-3 text-base text-gray-500 outline-0 focus:ring-2 focus:ring-blue-600;
 }
 
 .form_input {
-   @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0 focus:ring-2 focus:ring-blue-600;
+   @apply w-full flex rounded-lg mt-2 p-3 text-base text-gray-500 outline-0 focus:ring-2 focus:ring-blue-600;
 }
 
 /* Nav Component */

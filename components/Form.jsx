@@ -129,13 +129,29 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                </span>
                <input
                   autoComplete="tel"
-                  type="number"
                   value={post.tel}
                   required
                   onChange={(e) => {
                      setPost({ ...post, tel: e.target.value });
                   }}
                   placeholder="Номер телефону або пошта"
+                  className="form_input"
+               ></input>
+            </label>
+            <label>
+               <span className="font-satoshi font-semibold text-base text-gray-700">
+                  Локація*
+                  {/* <span className="font-normal">
+							(#product, #webdevelopment, #idea)
+						</span> */}
+               </span>
+               <input
+                  required
+                  value={post.location}
+                  onChange={(e) => {
+                     setPost({ ...post, location: e.target.value });
+                  }}
+                  placeholder="Населений пункт"
                   className="form_input"
                ></input>
             </label>
@@ -158,22 +174,6 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                ></input>
             </label>
 
-            <label>
-               <span className="font-satoshi font-semibold text-base text-gray-700">
-                  Локація
-                  {/* <span className="font-normal">
-							(#product, #webdevelopment, #idea)
-						</span> */}
-               </span>
-               <input
-                  value={post.location}
-                  onChange={(e) => {
-                     setPost({ ...post, location: e.target.value });
-                  }}
-                  placeholder="Населений пункт"
-                  className="form_input"
-               ></input>
-            </label>
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
                   Додаткова інформація

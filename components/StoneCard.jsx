@@ -41,69 +41,71 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                <h3 className="font-satoshi font-bold text-white">Шукаю</h3>
             </div>
          )}
-         <div className="flex flex-center justify-between items-center items-start gap-5">
-            <div className="flex-1 flex justify-start items-center gap-3">
-               <div className="flex flex-col mt-3 mb-5">
-                  <p
-                     className="font-inter font-sm text-gray-500"
-                     onClick={handleProfileClick}
-                  >
-                     <span className="font-satoshi font-semibold text-gray-500 ">
-                        Ім'я:{' '}
-                     </span>
-                     <span className="hover:text-orange-600 cursor-pointer">
-                        {post.creator.username}
-                     </span>
-                  </p>
-                  <p
-                     className="font-inter font-sm text-gray-500 cursor-pointer"
-                     onClick={() =>
-                        handlecolorClick && handlecolorClick(post.manufacturer)
-                     }
-                  >
-                     <span className="font-satoshi font-semibold text-gray-500 ">
-                        Матеріал:{' '}
-                     </span>
-                     <span className="hover:text-orange-600 cursor-pointer">
-                        {post.manufacturer}
-                     </span>
-                  </p>
-                  <p
-                     className="font-inter font-sm text-gray-500 cursor-pointer"
-                     onClick={() =>
-                        handlecolorClick && handlecolorClick(post.color)
-                     }
-                  >
-                     <span className="font-satoshi font-semibold text-gray-500 ">
-                        Колір:{' '}
-                     </span>
-                     <span className="hover:text-orange-600 cursor-pointer">
-                        {post.color}
-                     </span>
-                  </p>
-                  <p className="font-inter font-sm text-gray-500">
-                     <span className="font-satoshi font-semibold text-gray-500">
-                        Розміри:{' '}
-                     </span>
-                     {post.dimensions}
-                  </p>
 
-                  <p className="font-inter font-sm text-gray-500">
-                     <span className="font-satoshi font-semibold text-black-500">
-                        Локація:{' '}
-                     </span>
-                     {post.location}
-                  </p>
-               </div>
+         <div className="flex-1 flex justify-start items-center gap-3">
+            <div className="flex flex-col justify-between mt-3 mb-5">
+               <p
+                  className="font-inter font-sm text-lg text-gray-500"
+                  onClick={handleProfileClick}
+               >
+                  <span className="font-satoshi font-semibold text-gray-500 ">
+                     Автор:{' '}
+                  </span>
+                  <span className="hover:text-orange-600 cursor-pointer">
+                     {post.creator.username}
+                  </span>
+               </p>
+               <p
+                  className="font-inter font-sm text-lg text-gray-500 cursor-pointer"
+                  onClick={() =>
+                     handlecolorClick && handlecolorClick(post.manufacturer)
+                  }
+               >
+                  <span className="font-satoshi font-semibold text-gray-500 ">
+                     Матеріал:{' '}
+                  </span>
+                  <span className="hover:text-orange-600 cursor-pointer">
+                     {post.manufacturer}
+                  </span>
+               </p>
+               <p
+                  className="font-inter font-sm text-lg text-gray-500 cursor-pointer"
+                  onClick={() =>
+                     handlecolorClick && handlecolorClick(post.color)
+                  }
+               >
+                  <span className="font-satoshi font-semibold text-gray-500 ">
+                     Колір:{' '}
+                  </span>
+                  <span className="hover:text-orange-600 cursor-pointer">
+                     {post.color}
+                  </span>
+               </p>
+               <p className="font-inter font-sm text-lg text-gray-500">
+                  <span className="font-satoshi font-semibold text-gray-500">
+                     Розміри:{' '}
+                  </span>
+                  {post.dimensions}
+               </p>
+
+               <p className="font-inter font-sm text-lg text-gray-500">
+                  <span className="font-satoshi font-semibold text-black-500">
+                     Локація:{' '}
+                  </span>
+                  {post.location}
+               </p>
             </div>
          </div>
+
          <div className="absolute bottom-2 left-5">
-            <span className="font-sm font-sm text-gray-500">{post.date}</span>
+            <span className="font-sm text-lg font-sm text-lg text-gray-500">
+               {post.date}
+            </span>
          </div>
 
          <div>
             <button
-               className="font-inter font-sm blue_gradient cursor-pointer  absolute right-3 bottom-2"
+               className="font-inter font-sm text-lg blue_gradient cursor-pointer  absolute right-3 bottom-2"
                type="button"
                onClick={openModal}
             >
@@ -154,17 +156,17 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                )}
                <div className="mt-4">
                   <p
-                     className="font-inter font-sm text-gray-500 "
+                     className="font-inter font-sm text-lg text-gray-500 "
                      onClick={handleProfileClick}
                   >
-                     <span className="font-satoshi font-semibold text-gray-500 ">
-                        Ім'я:{' '}
+                     <span className="font-satoshi font-semibold text-gray-500">
+                        Автор:{' '}
                      </span>
                      <span className="hover:text-orange-600 cursor-pointer">
                         {post.creator.username}
                      </span>
                   </p>
-                  <p className="font-inter font-sm text-gray-500 cursor-pointer">
+                  <p className="font-inter font-sm text-lg text-gray-500 ">
                      <span className="font-satoshi font-semibold text-gray-500 ">
                         Матеріал:{' '}
                      </span>
@@ -172,7 +174,7 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                         {post.manufacturer}
                      </span>
                   </p>
-                  <p className="font-inter font-sm text-gray-500 cursor-pointer">
+                  <p className="font-inter font-sm text-lg text-gray-500 ">
                      <span className="font-satoshi font-semibold text-gray-500 ">
                         Колір:{' '}
                      </span>
@@ -180,27 +182,32 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                         {post.color}
                      </span>
                   </p>
-                  <p className="font-inter font-sm text-gray-500">
+                  <p className="font-inter font-sm text-lg text-gray-500">
                      <span className="font-satoshi font-semibold text-gray-500">
                         Розміри:{' '}
                      </span>
                      {post.dimensions}
                   </p>
-
-                  <p className="font-inter font-sm text-gray-500">
+                  <p className="font-inter font-sm text-lg text-gray-500">
+                     <span className="font-satoshi font-semibold text-black-500">
+                        Телефон:{' '}
+                     </span>
+                     {post.tel}
+                  </p>
+                  <p className="font-inter font-sm text-lg text-gray-500">
                      <span className="font-satoshi font-semibold text-black-500 ">
                         Локація:{' '}
                      </span>
                      {post.location}
                   </p>
-                  <p className="font-inter font-sm text-gray-500">
+                  <p className="font-inter font-sm text-lg text-gray-500">
                      <span className="font-satoshi font-semibold text-black-500">
                         Ціна:{' '}
                      </span>
                      {post.price}
                   </p>
                   {post.info && (
-                     <p className="font-inter font-sm text-gray-500">
+                     <p className="font-inter font-sm text-lg text-gray-500">
                         {' '}
                         <span className="font-satoshi font-semibold text-black-500">
                            Коментар:{' '}
@@ -209,7 +216,7 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                      </p>
                   )}
                   <div className="mt-3 mb-6">
-                     <p className="font-inter font-sm text-gray-500 ">
+                     <p className="font-inter font-sm text-lg text-gray-500 ">
                         <span className="font-satoshi font-semibold text-gray-500"></span>
                         <div>
                            <a href={`tel:${post.tel}`}>
@@ -239,7 +246,7 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                </div>
                {/* </div> */}
                <div className="absolute bottom-2 left-5">
-                  <span className="font-sm font-sm text-gray-500">
+                  <span className="font-sm text-lg font-sm text-lg text-gray-500">
                      {post.date}
                   </span>
                </div>
@@ -247,7 +254,7 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                <button
                   type="button"
                   onClick={closeModal}
-                  className="font-inter font-sm blue_gradient cursor-pointer  absolute right-5 bottom-2"
+                  className="font-inter font-sm text-lg blue_gradient cursor-pointer  absolute right-5 bottom-2"
                >
                   Закрити
                </button>
