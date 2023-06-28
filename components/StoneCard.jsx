@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-// import Image from 'next/image';
+import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import ReactModal from 'react-modal';
@@ -129,42 +129,30 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                      overflow: 'auto',
                      WebkitOverflowScrolling: 'touch',
                      marginBottom: '20px',
-                     padding: '20px',
+
                      outline: 'none'
                   }
                }}
                isOpen={showModal}
                onRequestClose={closeModal}
-               contentLabel="Example Modal"
+               contentLabel="Modal"
                shouldCloseOnOverlayClick={true}
-               className="modal_card"
+               className="modal_card "
             >
                {post.type === 'Sell' ? (
-                  <div className="flex justify-center   bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 my-1">
-                     <h3 className="font-satoshi font-bold text-white">
+                  <div className="flex justify-center   bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 my-1 ">
+                     <h3 className="font-satoshi font-bold  text-white">
                         Пропоную
                      </h3>
                   </div>
                ) : (
-                  <div className="flex justify-center     bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-                     <h3 className="font-satoshi font-bold text-white">
+                  <div className="flex justify-center     bg-gradient-to-r from-emerald-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% my-1">
+                     <h3 className="font-satoshi font-bold  text-white">
                         Шукаю
                      </h3>
                   </div>
                )}
-               <div className=" gap-6 p-5 pt-3">
-                  {/* flex justify-start items-center */}
-                  {/* <div>
-							<Image
-						src={post.creator.image}
-						alt="user_image"
-						width={40}
-						height={40}
-						className="rounded-full object-contain cursor-pointer"
-						
-					/> 
-				</div> */}
-                  {/* <div className="flex flex-col"> */}
+               <div className="mt-4">
                   <p
                      className="font-inter font-sm text-gray-500 "
                      onClick={handleProfileClick}
@@ -198,17 +186,7 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                      </span>
                      {post.dimensions}
                   </p>
-                  <p className="font-inter font-sm text-gray-500 ">
-                     <span className="font-satoshi font-semibold text-gray-500">
-                        Телефон:{' '}
-                     </span>
-                     <a
-                        className="hover:text-orange-600 cursor-pointer"
-                        href={`tel:${post.tel}`}
-                     >
-                        {post.tel}
-                     </a>
-                  </p>
+
                   <p className="font-inter font-sm text-gray-500">
                      <span className="font-satoshi font-semibold text-black-500 ">
                         Локація:{' '}
@@ -230,8 +208,35 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                         {post.info}
                      </p>
                   )}
+                  <div className="mt-3 mb-6">
+                     <p className="font-inter font-sm text-gray-500 ">
+                        <span className="font-satoshi font-semibold text-gray-500"></span>
+                        <div>
+                           <a href={`tel:${post.tel}`}>
+                              <Image
+                                 src="/assets/icons/phone-call-icon.svg"
+                                 alt="user_image"
+                                 width={50}
+                                 height={50}
+                                 className="rounded-full object-contain cursor-pointer"
+                              />
+                           </a>
+                        </div>
+                     </p>
+                  </div>
+                  {/* flex justify-start items-center */}
+                  {/* <div>
+							<Image
+						src={post.creator.image}
+						alt="user_image"
+						width={40}
+						height={40}
+						className="rounded-full object-contain cursor-pointer"
+						
+					/> 
+				</div> */}
+                  {/* <div className="flex flex-col"> */}
                </div>
-
                {/* </div> */}
                <div className="absolute bottom-2 left-5">
                   <span className="font-sm font-sm text-gray-500">
@@ -251,13 +256,13 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
          {session?.user.id === post.creator._id && pathName === '/profile' && (
             <div className=" flex-center gap-4 border-t border-gray-100 p-3">
                <p
-                  className="font-inter text-m green_gradient cursor-pointer"
+                  className="font-inter text-lg green_gradient cursor-pointer"
                   onClick={handleEdit}
                >
                   Редагувати
                </p>
                <p
-                  className="font-inter text-l orange_gradient cursor-pointer"
+                  className="font-inter text-lg orange_gradient cursor-pointer"
                   onClick={handleDelete}
                >
                   Видалити

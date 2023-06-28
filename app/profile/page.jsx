@@ -45,8 +45,8 @@ const MyProfile = () => {
    }, []);
    return (
       <Profile
-         name="Оголошення"
-         desc="Мої"
+         name="Мої"
+         desc="Оголошення"
          data={posts}
          handleEdit={handleEdit}
          handleDelete={handleDelete}

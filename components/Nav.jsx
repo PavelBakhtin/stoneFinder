@@ -16,14 +16,14 @@ const Nav = () => {
       setUpProviders();
    }, []);
    return (
-      <nav className="flex-between w-full mb-12 pt-3">
+      <nav className="flex-between w-full mb-8 pt-3">
          <Link href="/" className="flex flex-center gap-2">
             <Image
                className="object-contain"
                src="/assets/images/logo.svg"
                alt="Stonefinder Logo"
-               width={30}
-               height={30}
+               width={40}
+               height={40}
             />
             <p className="logo_text">Stonefinder</p>
          </Link>

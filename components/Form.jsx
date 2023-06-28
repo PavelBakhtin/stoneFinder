@@ -21,14 +21,14 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
    };
 
    return (
-      <section className="w-full max-w-full flex-start flex-col">
+      <section className="w-full max-w-full flex-center flex-col">
          <h1 className="head_text text-left">
             <span className="blue_gradient">Створити оголошення</span>
          </h1>
 
          <form
             onSubmit={handleSubmit}
-            className="mt-10 w-full max-w-2x1 flex flex-col gap-5 glassmorphism"
+            className="mt-5 w-full max-w-xl flex flex-col gap-5 glassmorphism"
          >
             <ul className="flex gap-3 mt-3" required>
                <li>
@@ -42,7 +42,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                      onChange={handleChange}
                   />
                   <label
-                     className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
+                     className="p-2 mr-3 cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
                      htmlFor="Sell"
                   >
                      Пропоную
@@ -71,6 +71,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                   Матеріал*
                </span>
                <CreatableSelect
+                  className="rounded-lg"
                   placeholder="Оберіть виробника"
                   required
                   formatCreateLabel={(inputValue) => inputValue}
@@ -128,6 +129,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                </span>
                <input
                   autoComplete="tel"
+                  type="number"
                   value={post.tel}
                   required
                   onChange={(e) => {
@@ -146,6 +148,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                </span>
 
                <input
+                  type="text"
                   value={post.price}
                   onChange={(e) => {
                      setPost({ ...post, price: e.target.value });
