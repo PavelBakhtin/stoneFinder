@@ -109,7 +109,7 @@
 }
 
 .search_input {
-   @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+   @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:ring-blue-600  outline-0 focus:outline-none focus:ring-0;
 }
 
 .copy_btn {
@@ -131,11 +131,11 @@
 
 /* Form Component */
 .form_textarea {
-   @apply w-full flex rounded-lg h-[100px] mt-2 p-3 text-base text-gray-500 outline-0 focus:ring-2 focus:ring-blue-600;
+   @apply w-full flex rounded-md h-[100px] mt-2 p-2 text-base text-gray-500 outline-0 focus:ring-1 focus:ring-blue-600 outline-0;
 }
 
 .form_input {
-   @apply w-full flex rounded-lg mt-2 p-3 text-base text-gray-500 outline-0 focus:ring-2 focus:ring-blue-600;
+   @apply w-full flex rounded-md mt-2 p-2 text-base text-gray-500 outline-0 focus:ring-1 focus:ring-blue-600;
 }
 
 /* Nav Component */
@@ -144,7 +144,7 @@
 }
 
 .dropdown {
-   @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+   @apply absolute right-0 top-full mt-3 w-full p-5 rounded-md bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
 }
 
 .dropdown_link {
@@ -153,10 +153,10 @@
 
 /* PromptCard Component */
 .prompt_card {
-   @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-5 pt-2 pb-6 backdrop-blur-lg backdrop-filter overflow-hidden w-[340px]  md:w-[300px];
+   @apply flex-1 break-inside-avoid rounded-md border border-gray-300 bg-white/20 bg-clip-padding p-5 pt-2 pb-6 backdrop-blur-lg backdrop-filter overflow-hidden w-[340px]  md:w-[300px];
 }
 .modal_card {
-   @apply flex-1 rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-5 backdrop-blur-lg backdrop-filter overflow-hidden w-3/4 sm:w-1/2 xl:w-1/4;
+   @apply flex-1 rounded-md border border-gray-300 bg-white/20 bg-clip-padding p-5 backdrop-blur-lg backdrop-filter overflow-hidden w-3/4 sm:w-1/2 xl:w-1/4;
 }
 .flex-center {
    @apply flex justify-center items-center;

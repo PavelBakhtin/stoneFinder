@@ -24,7 +24,6 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
    ReactModal.setAppElement(body);
    const openModal = () => {
       setShowModal(true);
-      console.log(post);
    };
    const closeModal = () => {
       setShowModal(false);
@@ -218,17 +217,16 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                   <div className="mt-3 mb-6">
                      <p className="font-inter font-sm text-lg text-gray-500 ">
                         <span className="font-satoshi font-semibold text-gray-500"></span>
-                        <div>
-                           <a href={`tel:${post.tel}`}>
-                              <Image
-                                 src="/assets/icons/phone-call-icon.svg"
-                                 alt="user_image"
-                                 width={50}
-                                 height={50}
-                                 className="rounded-full object-contain cursor-pointer"
-                              />
-                           </a>
-                        </div>
+
+                        <a href={`tel:${post.tel}`}>
+                           <Image
+                              src="/assets/icons/phone-call-icon.svg"
+                              alt="user_image"
+                              width={50}
+                              height={50}
+                              className="rounded-full object-contain cursor-pointer"
+                           />
+                        </a>
                      </p>
                   </div>
                   {/* flex justify-start items-center */}

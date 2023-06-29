@@ -6,17 +6,13 @@ import stoneOptions from '@utils/data';
 import CreatableSelect from 'react-select/creatable';
 const Form = ({ post, setPost, submitting, handleSubmit }) => {
    const [selected, setSelected] = useState('');
-   // const [color, setcolor] = useState(null);
-   // const [dimensions, setDimensions] = useState(null);
-   // const [price, setPrice] = useState(null);
-   // const [tel, setTel] = useState(null);
-   // const [location, setLocation] = useState(null);
-   // const [info, setInfo] = useState(null);
 
+   const [priceValue, setPriceValue] = useState('');
+   const [checkedPrice, setPriceChecked] = useState(false);
    useEffect(() => {
       setPost({ ...post, type: 'Sell' });
    }, []);
-   const handleChange = (event) => {
+   const handleTypeChange = (event) => {
       setPost({ ...post, type: event.target.value });
    };
 
@@ -39,7 +35,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                      id="Sell"
                      name="choose"
                      value="Sell"
-                     onChange={handleChange}
+                     onChange={handleTypeChange}
                   />
                   <label
                      className="p-2 mr-3 cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
@@ -55,7 +51,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                      id="Buy"
                      name="choose"
                      value="Buy"
-                     onChange={handleChange}
+                     onChange={handleTypeChange}
                   />
                   <label
                      className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
@@ -71,7 +67,13 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                   Матеріал*
                </span>
                <CreatableSelect
-                  className="rounded-lg"
+                  styles={{
+                     control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        border: 'none',
+                        marginTop: '8px'
+                     })
+                  }}
                   placeholder="Оберіть виробника"
                   required
                   formatCreateLabel={(inputValue) => inputValue}
@@ -101,13 +103,12 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                      }}
                      placeholder="Назва декору, артикул..."
                      className="form_input"
-                  ></input>
+                  />
                )}
             </label>
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
                   Розміри*
-                  {/* <span className="font-normal">(Довжина, ширина, товщина)</span> */}
                </span>
 
                <input
@@ -118,14 +119,11 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                   }}
                   placeholder="Довжина, ширина, товщина"
                   className="form_input"
-               ></input>
+               />
             </label>
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
                   Телефон*
-                  {/* <span className="font-normal">
-							(#product, #webdevelopment, #idea)
-						</span> */}
                </span>
                <input
                   autoComplete="tel"
@@ -136,14 +134,11 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                   }}
                   placeholder="Номер телефону або пошта"
                   className="form_input"
-               ></input>
+               />
             </label>
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
                   Локація*
-                  {/* <span className="font-normal">
-							(#product, #webdevelopment, #idea)
-						</span> */}
                </span>
                <input
                   required
@@ -153,26 +148,47 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                   }}
                   placeholder="Населений пункт"
                   className="form_input"
-               ></input>
+               />
             </label>
-            <label>
-               <span className="font-satoshi font-semibold text-base text-gray-700">
+            <fieldset
+               className="flex gap-3 "
+               onChange={(e) => {
+                  setPost({ ...post, price: e.target.value });
+                  if (checkedPrice) {
+                     setPost({ ...post, price: priceValue });
+                  }
+               }}
+            >
+               <legend className="font-satoshi font-semibold text-base text-gray-700">
                   Приблизна вартість
-                  {/* <span className="font-normal">
-							(#product, #webdevelopment, #idea)
-						</span> */}
-               </span>
-
-               <input
-                  type="text"
-                  value={post.price}
-                  onChange={(e) => {
-                     setPost({ ...post, price: e.target.value });
-                  }}
-                  placeholder="Зручна валюта"
-                  className="form_input"
-               ></input>
-            </label>
+               </legend>
+               <label>
+                  <input
+                     type="text"
+                     disabled={checkedPrice}
+                     value={priceValue}
+                     onChange={(e) => {
+                        setPriceValue(e.target.value);
+                     }}
+                     placeholder="Зручна валюта"
+                     className="form_input"
+                  />
+               </label>
+               <label className="p-2 cursor-pointer items-center mt-2">
+                  <input
+                     checked={checkedPrice}
+                     type="checkbox"
+                     name="choose"
+                     value="Договірна"
+                     onChange={() => {
+                        setPriceChecked((prev) => !prev);
+                     }}
+                  />
+                  <span className="font-satoshi font-semibold text-base text-gray-500 ml-1">
+                     Договірна
+                  </span>
+               </label>
+            </fieldset>
 
             <label>
                <span className="font-satoshi font-semibold text-base text-gray-700">
@@ -194,7 +210,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                <button
                   type="submit"
                   disabled={submitting}
-                  className="px-5 py-1.5 text-sm bg-primary-orange text-white disabled: bg-primary-grey rounded-full"
+                  className="px-5 py-1.5 text-sm bg-orange-500 text-white rounded-full hover:bg-orange-600 "
                >
                   {/* {submitting ? " Створити" : "Заповніть всі поля"} */}
                   Зберегти

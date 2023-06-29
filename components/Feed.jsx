@@ -51,6 +51,7 @@ const Feed = () => {
          (item) =>
             regex.test(item.creator.username) ||
             regex.test(item.color) ||
+            regex.test(item.manufacturer) ||
             regex.test(item.info)
       );
    };
