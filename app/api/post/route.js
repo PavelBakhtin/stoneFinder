@@ -7,7 +7,7 @@ export const GET = async (request) => {
    try {
       await connectToDb();
 
-      const posts = await Post.find({}).populate('creator');
+      const posts = await Post.find({}).sort({ _id: -1 }).populate('creator');
       return new Response(JSON.stringify(posts), {
          status: 200,
          headers: {
