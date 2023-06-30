@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import StoneCard from './StoneCard';
-
+import ScrollToTop from 'react-scroll-to-top';
 const StoneCardList = ({ data, handlecolorClick }) => {
    return (
       <div className="mt-6 prompt_layout">
@@ -82,7 +82,14 @@ const Feed = () => {
 
    return (
       <section className="feed">
-         <form className="relative w-full md:w-3/5 flex-center">
+         <ScrollToTop
+            smooth
+            className="flex-center hover:bg-black"
+            component={
+               <Image src="/assets/icons/arrow-up.svg" width={24} height={24} />
+            }
+         />
+         <form className="relative w-full md:w-3/5 flex-center sticky">
             <input
                type="text"
                placeholder="Шукайте за назвою або артикулом"
@@ -101,16 +108,6 @@ const Feed = () => {
                   height={14}
                />
             )}
-
-            {/* {searchText !== '' && (
-               <div className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                  <ul className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                     {stoneOptions.map((option) => (
-                        <li>{option.value}</li>
-                     ))}
-                  </ul>
-               </div>
-            )} */}
          </form>
          <ul className="flex gap-3 mt-3">
             <li>
