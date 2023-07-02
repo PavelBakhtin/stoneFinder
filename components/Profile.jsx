@@ -1,3 +1,4 @@
+'use client';
 import StoneCard from './StoneCard';
 const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
    return (
