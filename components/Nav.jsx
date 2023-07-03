@@ -87,7 +87,7 @@ const Nav = () => {
                            className="dropdown_link"
                            onClick={() => setToggleDropdown(false)}
                         >
-                           Мій профіль
+                           Мої оголошення
                         </Link>
                         <Link
                            href="/create-post"

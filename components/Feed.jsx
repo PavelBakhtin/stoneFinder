@@ -163,22 +163,25 @@ const Feed = () => {
             </li>
          </ul>
          {/* All Prompts */}
-         {searchText ? (
-            <StoneCardList
-               data={searchedResults}
-               handlecolorClick={handlecolorClick}
-            />
-         ) : filteredPosts.length === 0 ? (
-            <StoneCardList
-               data={allPosts}
-               handlecolorClick={handlecolorClick}
-            />
-         ) : (
-            <StoneCardList
-               data={filteredPosts}
-               handlecolorClick={handlecolorClick}
-            />
-         )}
+         {
+            (allPosts.length >= 0,
+            searchText ? (
+               <StoneCardList
+                  data={searchedResults}
+                  handlecolorClick={handlecolorClick}
+               />
+            ) : filteredPosts.length === 0 ? (
+               <StoneCardList
+                  data={allPosts}
+                  handlecolorClick={handlecolorClick}
+               />
+            ) : (
+               <StoneCardList
+                  data={filteredPosts}
+                  handlecolorClick={handlecolorClick}
+               />
+            ))
+         }
       </section>
    );
 };
