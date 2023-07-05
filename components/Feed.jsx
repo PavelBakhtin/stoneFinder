@@ -27,9 +27,13 @@ const Feed = () => {
    const [searchedResults, setSearchedResults] = useState([]);
    const [filteredPosts, setFilteredPosts] = useState([]);
    const fetchPosts = async () => {
-      const response = await fetch('/api/post');
-      const data = await response.json();
-      setAllPosts(data);
+      try {
+         const response = await fetch('/api/post');
+         const data = await response.json();
+         setAllPosts(data);
+      } catch (error) {
+         console.log(error);
+      }
    };
 
    useEffect(() => {

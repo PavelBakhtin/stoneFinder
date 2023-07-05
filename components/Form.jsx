@@ -2,11 +2,12 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import stoneOptions from '@utils/data';
+import stoneOptions from '@utils/stone-options';
+import cities from '@utils/cities';
 import CreatableSelect from 'react-select/creatable';
 const Form = ({ post, setPost, submitting, handleSubmit }) => {
    const [selected, setSelected] = useState('');
-
+   const [selectedCity, setSelectedCity] = useState('');
    const [priceValue, setPriceValue] = useState('');
    const [checkedPrice, setPriceChecked] = useState(false);
    useEffect(() => {
@@ -24,7 +25,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
 
          <form
             onSubmit={handleSubmit}
-            className="mt-5 w-full max-w-xl flex flex-col gap-5 glassmorphism"
+            className=" w-full max-w-xl flex flex-col gap-5 glassmorphism"
          >
             <ul className="flex gap-3 mt-3" required>
                <li>
@@ -140,14 +141,30 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                <span className="font-satoshi font-semibold text-base text-gray-700">
                   Локація*
                </span>
-               <input
-                  required
-                  value={post.location}
-                  onChange={(e) => {
-                     setPost({ ...post, location: e.target.value });
+               <CreatableSelect
+                  styles={{
+                     control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        border: 'none',
+                        marginTop: '8px'
+                     })
                   }}
-                  placeholder="Населений пункт"
-                  className="form_input"
+                  placeholder="Оберіть місто"
+                  required
+                  formatCreateLabel={(inputValue) => inputValue}
+                  options={cities}
+                  defaultValue={selectedCity}
+                  onChange={(e) => {
+                     setSelectedCity(e);
+                     if (e === null) {
+                        return;
+                     }
+                     setPost({
+                        ...post,
+                        location: e.value
+                     });
+                  }}
+                  isClearable
                />
             </label>
             <fieldset
