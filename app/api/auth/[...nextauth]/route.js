@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth/next';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
+import InstagramProvider from 'next-auth/providers/instagram';
 import { connectToDb } from '@utils/database';
 import User from '@models/user';
 const handler = NextAuth({
@@ -8,6 +9,14 @@ const handler = NextAuth({
       GoogleProvider({
          clientId: process.env.GOOGLE_ID,
          clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      }),
+      FacebookProvider({
+         clientId: process.env.FACEBOOK_CLIENT_ID,
+         clientSecret: process.env.FACEBOOK_CLIENT_SECRET
+      }),
+      InstagramProvider({
+         clientId: process.env.INSTAGRAM_CLIENT_ID,
+         clientSecret: process.env.INSTAGRAM_CLIENT_SECRET
       })
    ],
    callbacks: {
@@ -25,7 +34,8 @@ const handler = NextAuth({
                await User.create({
                   email: profile.email,
                   username: profile.name,
-                  image: profile.picture
+                  image: profile.picture,
+                  favorites: []
                });
             }
             if (userExists) {

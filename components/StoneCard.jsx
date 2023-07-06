@@ -4,17 +4,13 @@ import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import ReactModal from 'react-modal';
-const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
+const StoneCard = ({ post, handleColorClick, handleEdit, handleDelete }) => {
    const { data: session } = useSession();
    const pathName = usePathname();
    const router = useRouter();
-   //    const [copied, setCopied] = useState('');
+   const [favorite, setFavorite] = useState(false);
    const [showModal, setShowModal] = useState(false);
-   // const handleCopy = () => {
-   // 	setCopied(post.prompt);
-   // 	navigator.clipboard.writeText(post.prompt);
-   // 	setTimeout(() => setCopied(""), 3000);
-   // };
+
    const handleProfileClick = () => {
       if (post.creator._id === session?.user.id) return router.push('/profile');
 
@@ -40,7 +36,11 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                <h3 className="font-satoshi font-bold text-white">Шукаю</h3>
             </div>
          )}
-
+         {/* {status === 'authenticated' && (
+            <button type="button" onClick={handleFavoriteClick}>
+               Обране
+            </button>
+         )} */}
          <div className="flex-1 flex justify-start items-center gap-3">
             <div className="flex flex-col justify-between mt-3 mb-5">
                <p
@@ -57,7 +57,7 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                <p
                   className="font-inter font-sm text-lg text-gray-500 cursor-pointer"
                   onClick={() =>
-                     handlecolorClick && handlecolorClick(post.manufacturer)
+                     handleColorClick && handleColorClick(post.manufacturer)
                   }
                >
                   <span className="font-satoshi font-semibold text-gray-500 ">
@@ -70,7 +70,7 @@ const StoneCard = ({ post, handlecolorClick, handleEdit, handleDelete }) => {
                <p
                   className="font-inter font-sm text-lg text-gray-500 cursor-pointer"
                   onClick={() =>
-                     handlecolorClick && handlecolorClick(post.color)
+                     handleColorClick && handleColorClick(post.color)
                   }
                >
                   <span className="font-satoshi font-semibold text-gray-500 ">

@@ -27,7 +27,7 @@ export const POST = async (req) => {
          date,
          manufacturer
       });
-      console.log(newPost);
+
       await newPost.save();
       return new Response(JSON.stringify(newPost), {
          status: 201

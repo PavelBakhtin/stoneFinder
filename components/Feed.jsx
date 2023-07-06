@@ -1,17 +1,17 @@
 'use client';
-
+import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import StoneCard from './StoneCard';
 import ScrollToTop from 'react-scroll-to-top';
-const StoneCardList = ({ data, handlecolorClick }) => {
+const StoneCardList = ({ data, handleColorClick }) => {
    return (
       <div className="mt-6 prompt_layout">
          {data.map((post) => (
             <StoneCard
                key={post._id}
                post={post}
-               handlecolorClick={handlecolorClick}
+               handleColorClick={handleColorClick}
             />
          ))}
       </div>
@@ -26,6 +26,9 @@ const Feed = () => {
    const [searchTimeout, setSearchTimeout] = useState(null);
    const [searchedResults, setSearchedResults] = useState([]);
    const [filteredPosts, setFilteredPosts] = useState([]);
+
+   const { data: session } = useSession();
+
    const fetchPosts = async () => {
       try {
          const response = await fetch('/api/post');
@@ -77,7 +80,7 @@ const Feed = () => {
    const handleChange = (e) => {
       setType(e.target.value);
    };
-   const handlecolorClick = (color) => {
+   const handleColorClick = (color) => {
       setSearchText(color);
 
       const searchResult = filterPosts(color);
@@ -90,7 +93,12 @@ const Feed = () => {
             smooth
             className="flex-center hover:bg-black"
             component={
-               <Image src="/assets/icons/arrow-up.svg" width={24} height={24} />
+               <Image
+                  src="/assets/icons/arrow-up.svg"
+                  width={24}
+                  height={24}
+                  alt="toTop"
+               />
             }
          />
          <form className="relative w-full md:w-3/5 flex-center sticky">
@@ -165,27 +173,43 @@ const Feed = () => {
                   Шукаю
                </label>
             </li>
+            {/* {session?.user && (
+               <li>
+                  <input
+                     checked={type === 'Favorite'}
+                     id="Favorite"
+                     className="hidden peer"
+                     type="radio"
+                     name="choose"
+                     value="Favorite"
+                     onChange={handleChange}
+                  />
+                  <label
+                     htmlFor="Favorite"
+                     className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
+                  >
+                     Обрані
+                  </label>
+               </li>
+            )} */}
          </ul>
          {/* All Prompts */}
-         {
-            (allPosts.length >= 0,
-            searchText ? (
-               <StoneCardList
-                  data={searchedResults}
-                  handlecolorClick={handlecolorClick}
-               />
-            ) : filteredPosts.length === 0 ? (
-               <StoneCardList
-                  data={allPosts}
-                  handlecolorClick={handlecolorClick}
-               />
-            ) : (
-               <StoneCardList
-                  data={filteredPosts}
-                  handlecolorClick={handlecolorClick}
-               />
-            ))
-         }
+         {searchText ? (
+            <StoneCardList
+               data={searchedResults}
+               handleColorClick={handleColorClick}
+            />
+         ) : filteredPosts.length === 0 ? (
+            <StoneCardList
+               data={allPosts}
+               handleColorClick={handleColorClick}
+            />
+         ) : (
+            <StoneCardList
+               data={filteredPosts}
+               handleColorClick={handleColorClick}
+            />
+         )}
       </section>
    );
 };
