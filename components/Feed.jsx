@@ -24,8 +24,7 @@ const Feed = () => {
    const [type, setType] = useState('All');
    // Search states
    const [searchText, setSearchText] = useState('');
-   const [searchTimeout, setSearchTimeout] = useState(null);
-   const [searchedResults, setSearchedResults] = useState([]);
+
    const [filteredPosts, setFilteredPosts] = useState([]);
 
    const { data: session } = useSession();
@@ -52,41 +51,31 @@ const Feed = () => {
          }
          return post.type === type;
       });
-      setFilteredPosts(posts);
-   }, [type]);
-   const filterPosts = (searchtext) => {
-      const regex = new RegExp(searchtext, 'i'); // 'i' flag for case-insensitive search
-      return allPosts.filter(
-         (item) =>
-            regex.test(item.creator.username) ||
-            regex.test(item.color) ||
-            regex.test(item.manufacturer) ||
-            regex.test(item.info)
-      );
-   };
+      if (searchText) {
+         const regex = new RegExp(searchText, 'i'); // 'i' flag for case-insensitive search
+         const searchPosts = posts.filter(
+            (item) =>
+               regex.test(item.creator.username) ||
+               regex.test(item.color) ||
+               regex.test(item.manufacturer) ||
+               regex.test(item.info)
+         );
+
+         setFilteredPosts(searchPosts);
+      } else setFilteredPosts(posts);
+   }, [type, searchText]);
+
    const handleClearSearch = () => {
       setSearchText('');
    };
    const handleSearchChange = (e) => {
-      clearTimeout(searchTimeout);
       setSearchText(e.target.value);
-
-      // debounce method
-      setSearchTimeout(
-         setTimeout(() => {
-            const searchResult = filterPosts(e.target.value);
-            setSearchedResults(searchResult);
-         }, 500)
-      );
    };
    const handleChange = (e) => {
       setType(e.target.value);
    };
    const handleColorClick = (color) => {
       setSearchText(color);
-
-      const searchResult = filterPosts(color);
-      setSearchedResults(searchResult);
    };
 
    return (
@@ -196,12 +185,7 @@ const Feed = () => {
             )} */}
          </ul>
          {/* All Prompts */}
-         {searchText ? (
-            <StoneCardList
-               data={searchedResults}
-               handleColorClick={handleColorClick}
-            />
-         ) : filteredPosts.length === 0 ? (
+         {!searchText && type === 'All' ? (
             <StoneCardList
                data={allPosts}
                handleColorClick={handleColorClick}
