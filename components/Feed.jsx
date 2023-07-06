@@ -33,9 +33,8 @@ const Feed = () => {
       try {
          const response = await fetch('/api/post');
          const data = await response.json();
-         setTimeout(() => {
-            setAllPosts(data);
-         }, 1500);
+
+         setAllPosts(data);
       } catch (error) {
          console.log(error);
       }
@@ -43,6 +42,7 @@ const Feed = () => {
 
    useEffect(() => {
       fetchPosts();
+      console.log(allPosts);
    }, []);
 
    useEffect(() => {
