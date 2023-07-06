@@ -33,6 +33,9 @@ const Feed = () => {
       try {
          const response = await fetch('/api/post');
          const data = await response.json();
+         if (!data) {
+            return fetchPosts();
+         }
          setAllPosts(data);
       } catch (error) {
          console.log(error);
