@@ -7,7 +7,7 @@ import ScrollToTop from 'react-scroll-to-top';
 const StoneCardList = ({ data, handleColorClick }) => {
    return (
       <div className="mt-6 prompt_layout">
-         {data.length >= 0 &&
+         {data &&
             data.map((post) => (
                <StoneCard
                   key={post._id}
@@ -34,9 +34,7 @@ const Feed = () => {
          const response = await fetch('/api/post');
          const data = await response.json();
 
-         setTimeout(() => {
-            setAllPosts(data);
-         }, 2000);
+         setAllPosts(data);
       } catch (error) {
          console.log(error);
       }
