@@ -34,13 +34,18 @@ const Feed = () => {
       try {
          const response = await fetch('/api/post');
          const data = await response.json();
-
-         setAllPosts(data);
+         setTimeout(() => {
+            setAllPosts(data);
+         }, 2000);
       } catch (error) {
          console.log(error);
       }
    };
-
+   useEffect(() => {
+      if (!Array.isArray(allPosts)) {
+         fetchPosts();
+      }
+   }, [allPosts]);
    useEffect(() => {
       fetchPosts();
    }, []);
