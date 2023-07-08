@@ -7,7 +7,7 @@ import ScrollToTop from 'react-scroll-to-top';
 const StoneCardList = ({ data, handleColorClick }) => {
    return (
       <div className="mt-6 prompt_layout">
-         {data.length > 0 &&
+         {Array.isArray(data) &&
             data.map((post) => (
                <StoneCard
                   key={post._id}
