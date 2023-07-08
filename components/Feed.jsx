@@ -7,7 +7,7 @@ import ScrollToTop from 'react-scroll-to-top';
 const StoneCardList = ({ data, handleColorClick }) => {
    return (
       <div className="mt-6 prompt_layout">
-         {data.length >= 0 &&
+         {data &&
             data.map((post) => (
                <StoneCard
                   key={post._id}
@@ -89,131 +89,131 @@ const Feed = () => {
       setSearchedResults(searchResult);
    };
 
-   return <div>Hello</div>;
-   //    <section className="feed">
-   //       <ScrollToTop
-   //          smooth
-   //          className="flex-center hover:bg-black"
-   //          component={
-   //             <Image
-   //                src="/assets/icons/arrow-up.svg"
-   //                width={24}
-   //                height={24}
-   //                alt="toTop"
-   //             />
-   //          }
-   //       />
-   //       <form className="relative w-full md:w-3/5 flex-center sticky">
-   //          <input
-   //             type="text"
-   //             placeholder="Шукайте за назвою або артикулом"
-   //             value={searchText}
-   //             onChange={handleSearchChange}
-   //             required
-   //             className="search_input peer"
-   //          />
-   //          {searchText !== '' && (
-   //             <Image
-   //                className="absolute right-3 cursor-pointer "
-   //                onClick={handleClearSearch}
-   //                src="/assets/icons/close.svg"
-   //                alt="close"
-   //                width={14}
-   //                height={14}
-   //             />
-   //          )}
-   //       </form>
-   //       <ul className="flex gap-3 mt-3">
-   //          <li>
-   //             <input
-   //                checked={type === 'All'}
-   //                id="All"
-   //                className="hidden peer"
-   //                type="radio"
-   //                name="choose"
-   //                value="All"
-   //                onChange={handleChange}
-   //             />
-   //             <label
-   //                htmlFor="All"
-   //                className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
-   //             >
-   //                Всі
-   //             </label>
-   //          </li>
-   //          <li>
-   //             <input
-   //                checked={type === 'Sell'}
-   //                id="Sell"
-   //                className="hidden peer"
-   //                type="radio"
-   //                name="choose"
-   //                value="Sell"
-   //                onChange={handleChange}
-   //             />
-   //             <label
-   //                htmlFor="Sell"
-   //                className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
-   //             >
-   //                Пропоную
-   //             </label>
-   //          </li>
-   //          <li>
-   //             <input
-   //                checked={type === 'Buy'}
-   //                id="Buy"
-   //                className="hidden peer"
-   //                type="radio"
-   //                name="choose"
-   //                value="Buy"
-   //                onChange={handleChange}
-   //             />
-   //             <label
-   //                htmlFor="Buy"
-   //                className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
-   //             >
-   //                Шукаю
-   //             </label>
-   //          </li>
-   //          {/* {session?.user && (
-   //             <li>
-   //                <input
-   //                   checked={type === 'Favorite'}
-   //                   id="Favorite"
-   //                   className="hidden peer"
-   //                   type="radio"
-   //                   name="choose"
-   //                   value="Favorite"
-   //                   onChange={handleChange}
-   //                />
-   //                <label
-   //                   htmlFor="Favorite"
-   //                   className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
-   //                >
-   //                   Обрані
-   //                </label>
-   //             </li>
-   //          )} */}
-   //       </ul>
-   //       {/* All Prompts */}
-   //       {searchText ? (
-   //          <StoneCardList
-   //             data={searchedResults}
-   //             handleColorClick={handleColorClick}
-   //          />
-   //       ) : filteredPosts.length === 0 ? (
-   //          <StoneCardList
-   //             data={allPosts}
-   //             handleColorClick={handleColorClick}
-   //          />
-   //       ) : (
-   //          <StoneCardList
-   //             data={filteredPosts}
-   //             handleColorClick={handleColorClick}
-   //          />
-   //       )}
-   //    </section>
-   // );
+   return (
+      <section className="feed">
+         <ScrollToTop
+            smooth
+            className="flex-center hover:bg-black"
+            component={
+               <Image
+                  src="/assets/icons/arrow-up.svg"
+                  width={24}
+                  height={24}
+                  alt="toTop"
+               />
+            }
+         />
+         <form className="relative w-full md:w-3/5 flex-center sticky">
+            <input
+               type="text"
+               placeholder="Шукайте за назвою або артикулом"
+               value={searchText}
+               onChange={handleSearchChange}
+               required
+               className="search_input peer"
+            />
+            {searchText !== '' && (
+               <Image
+                  className="absolute right-3 cursor-pointer "
+                  onClick={handleClearSearch}
+                  src="/assets/icons/close.svg"
+                  alt="close"
+                  width={14}
+                  height={14}
+               />
+            )}
+         </form>
+         <ul className="flex gap-3 mt-3">
+            <li>
+               <input
+                  checked={type === 'All'}
+                  id="All"
+                  className="hidden peer"
+                  type="radio"
+                  name="choose"
+                  value="All"
+                  onChange={handleChange}
+               />
+               <label
+                  htmlFor="All"
+                  className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
+               >
+                  Всі
+               </label>
+            </li>
+            <li>
+               <input
+                  checked={type === 'Sell'}
+                  id="Sell"
+                  className="hidden peer"
+                  type="radio"
+                  name="choose"
+                  value="Sell"
+                  onChange={handleChange}
+               />
+               <label
+                  htmlFor="Sell"
+                  className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
+               >
+                  Пропоную
+               </label>
+            </li>
+            <li>
+               <input
+                  checked={type === 'Buy'}
+                  id="Buy"
+                  className="hidden peer"
+                  type="radio"
+                  name="choose"
+                  value="Buy"
+                  onChange={handleChange}
+               />
+               <label
+                  htmlFor="Buy"
+                  className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
+               >
+                  Шукаю
+               </label>
+            </li>
+            {/* {session?.user && (
+               <li>
+                  <input
+                     checked={type === 'Favorite'}
+                     id="Favorite"
+                     className="hidden peer"
+                     type="radio"
+                     name="choose"
+                     value="Favorite"
+                     onChange={handleChange}
+                  />
+                  <label
+                     htmlFor="Favorite"
+                     className="p-2  cursor-pointer min-w-250 rounded-lg bg-white font-satoshi hover:bg-orange-500 peer-checked:bg-orange-500"
+                  >
+                     Обрані
+                  </label>
+               </li>
+            )} */}
+         </ul>
+         {/* All Prompts */}
+         {searchText ? (
+            <StoneCardList
+               data={searchedResults}
+               handleColorClick={handleColorClick}
+            />
+         ) : filteredPosts.length === 0 ? (
+            <StoneCardList
+               data={allPosts}
+               handleColorClick={handleColorClick}
+            />
+         ) : (
+            <StoneCardList
+               data={filteredPosts}
+               handleColorClick={handleColorClick}
+            />
+         )}
+      </section>
+   );
 };
 
 export default Feed;
