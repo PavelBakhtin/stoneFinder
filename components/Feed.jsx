@@ -185,7 +185,7 @@ const Feed = () => {
             )} */}
          </ul>
          {/* All Prompts */}
-         {!searchText && type === 'All' ? (
+         {/* {!searchText && type === 'All' ? (
             <StoneCardList
                data={allPosts}
                handleColorClick={handleColorClick}
@@ -195,7 +195,7 @@ const Feed = () => {
                data={filteredPosts}
                handleColorClick={handleColorClick}
             />
-         )}
+         )} */}
       </section>
    );
 };
