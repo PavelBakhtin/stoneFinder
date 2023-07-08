@@ -40,7 +40,7 @@ const Feed = () => {
          const data = await response.json();
          setTimeout(() => {
             setAllPosts(data);
-         }, 1000);
+         }, 1500);
          setIsLoading(false);
       } catch (error) {
          console.log(error);
