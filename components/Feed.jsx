@@ -38,7 +38,9 @@ const Feed = () => {
             throw new Error();
          }
          const data = await response.json();
-         setAllPosts(data);
+         setTimeout(() => {
+            setAllPosts(data);
+         }, 1500);
          setIsLoading(false);
       } catch (error) {
          console.log(error);
