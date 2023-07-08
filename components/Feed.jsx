@@ -41,9 +41,10 @@ const Feed = () => {
          setTimeout(() => {
             setAllPosts(data);
          }, 2000);
-         setIsLoading(false);
       } catch (error) {
          console.log(error);
+      } finally {
+         setIsLoading(false);
       }
    };
    useEffect(() => {
