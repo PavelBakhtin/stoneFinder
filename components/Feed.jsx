@@ -38,7 +38,9 @@ const Feed = () => {
             throw new Error();
          }
          const data = await response.json();
-         setAllPosts(data);
+         setTimeout(() => {
+            setAllPosts(data);
+         }, 2000);
       } catch (error) {
          console.log(error);
       } finally {
@@ -77,7 +79,7 @@ const Feed = () => {
    const handleSearchChange = (e) => {
       setSearchText(e.target.value);
    };
-   const handleChange = (e) => {
+   const handleTypeChange = (e) => {
       setType(e.target.value);
    };
    const handleColorClick = (color) => {
@@ -127,7 +129,7 @@ const Feed = () => {
                   type="radio"
                   name="choose"
                   value="All"
-                  onChange={handleChange}
+                  onChange={handleTypeChange}
                />
                <label
                   htmlFor="All"
@@ -144,7 +146,7 @@ const Feed = () => {
                   type="radio"
                   name="choose"
                   value="Sell"
-                  onChange={handleChange}
+                  onChange={handleTypeChange}
                />
                <label
                   htmlFor="Sell"
@@ -161,7 +163,7 @@ const Feed = () => {
                   type="radio"
                   name="choose"
                   value="Buy"
-                  onChange={handleChange}
+                  onChange={handleTypeChange}
                />
                <label
                   htmlFor="Buy"
@@ -179,7 +181,7 @@ const Feed = () => {
                      type="radio"
                      name="choose"
                      value="Favorite"
-                     onChange={handleChange}
+                     onChange={handleTypeChange}
                   />
                   <label
                      htmlFor="Favorite"
