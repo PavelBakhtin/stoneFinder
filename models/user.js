@@ -16,9 +16,6 @@ const UserSchema = new Schema({
    },
    image: {
       type: String
-   },
-   favorites: {
-      type: Array
    }
 });
 const User = models.User || model('User', UserSchema);

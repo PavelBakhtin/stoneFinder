@@ -5,6 +5,8 @@ import Image from 'next/image';
 import StoneCard from './StoneCard';
 import ScrollToTop from 'react-scroll-to-top';
 import { ColorRing } from 'react-loader-spinner';
+import Link from 'next/link';
+
 const StoneCardList = ({ data, handleColorClick }) => {
    return (
       <div className="mt-6 prompt_layout">
@@ -21,6 +23,7 @@ const StoneCardList = ({ data, handleColorClick }) => {
 
 const Feed = () => {
    const [allPosts, setAllPosts] = useState([]);
+   const [userFavorites, setUserFavorites] = useState([]);
    const [type, setType] = useState('All');
    const [isLoading, setIsLoading] = useState(false);
    // Search states
@@ -38,9 +41,8 @@ const Feed = () => {
             throw new Error();
          }
          const data = await response.json();
-         setTimeout(() => {
-            setAllPosts(data);
-         }, 2000);
+
+         setAllPosts(data);
       } catch (error) {
          console.log(error);
       } finally {
@@ -48,6 +50,26 @@ const Feed = () => {
       }
    };
 
+   const getFavs = async () => {
+      try {
+         const response = await fetch(`/api/favorite/${session?.user.id}`);
+         const data = await response.json();
+         if (!data) {
+            createFavs();
+         }
+         setUserFavorites(data.favorite);
+      } catch (error) {}
+   };
+   const createFavs = async () => {
+      try {
+         const response = await fetch(`/api/favorite/new`, {
+            method: 'POST',
+            body: JSON.stringify({ userId: session?.user.id, favorite: [] })
+         });
+      } catch (error) {
+         console.log(error);
+      }
+   };
    useEffect(() => {
       fetchPosts();
    }, []);
@@ -79,8 +101,10 @@ const Feed = () => {
    const handleSearchChange = (e) => {
       setSearchText(e.target.value);
    };
-   const handleTypeChange = (e) => {
+   const handleTypeChange = async (e) => {
       setType(e.target.value);
+
+      // console.log(allPosts[0]._id);
    };
    const handleColorClick = (color) => {
       setSearchText(color);
@@ -88,6 +112,13 @@ const Feed = () => {
 
    return (
       <section className="feed">
+         {session?.user && (
+            <div className="addPost_btn">
+               <Link className="text-2xl px-5 py-3" href="/create-post">
+                  +
+               </Link>
+            </div>
+         )}
          <ScrollToTop
             smooth
             className="flex-center hover:bg-black"
@@ -172,7 +203,7 @@ const Feed = () => {
                   Шукаю
                </label>
             </li>
-            {/* {session?.user && (
+            {session?.user && (
                <li>
                   <input
                      checked={type === 'Favorite'}
@@ -181,7 +212,10 @@ const Feed = () => {
                      type="radio"
                      name="choose"
                      value="Favorite"
-                     onChange={handleTypeChange}
+                     onChange={(e) => {
+                        getFavs();
+                        handleTypeChange(e);
+                     }}
                   />
                   <label
                      htmlFor="Favorite"
@@ -190,7 +224,7 @@ const Feed = () => {
                      Обрані
                   </label>
                </li>
-            )} */}
+            )}
          </ul>
          {/* All Prompts */}
          {isLoading ? (
