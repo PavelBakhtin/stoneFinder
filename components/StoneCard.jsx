@@ -118,7 +118,8 @@ const StoneCard = ({ post, handleColorClick, handleEdit, handleDelete }) => {
                      left: 0,
                      right: 0,
                      bottom: 0,
-                     backgroundColor: 'rgba(255, 255, 255, 0.75)'
+                     backgroundColor: 'rgba(255, 255, 255, 0.75)',
+                     zIndex: 100
                   },
                   content: {
                      position: 'absolute',
@@ -138,7 +139,7 @@ const StoneCard = ({ post, handleColorClick, handleEdit, handleDelete }) => {
                onRequestClose={closeModal}
                contentLabel="Modal"
                shouldCloseOnOverlayClick={true}
-               className="modal_card "
+               className="modal_card  "
             >
                {post.type === 'Sell' ? (
                   <div className="flex justify-center   bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 my-1 ">

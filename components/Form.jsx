@@ -177,10 +177,11 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                }}
             >
                <legend className="font-satoshi font-semibold text-base text-gray-700">
-                  Приблизна вартість
+                  Приблизна вартість*
                </legend>
                <label>
                   <input
+                     required
                      type="text"
                      disabled={checkedPrice}
                      value={priceValue}
@@ -201,7 +202,7 @@ const Form = ({ post, setPost, submitting, handleSubmit }) => {
                         setPriceChecked((prev) => !prev);
                      }}
                   />
-                  <span className="font-satoshi font-semibold text-base text-gray-500 ml-1">
+                  <span className=" font-satoshi font-semibold text-base text-gray-500 ml-1">
                      Договірна
                   </span>
                </label>

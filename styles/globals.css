@@ -69,6 +69,9 @@
    @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
 }
 
+.addPost_btn {
+   @apply sm:invisible z-10 hover:bg-orange-600 rounded-full cursor-pointer bg-orange-500   text-white fixed  bottom-[150px] right-8  font-inter flex items-center justify-center;
+}
 .glassmorphism {
    @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
 }
@@ -109,7 +112,7 @@
    @apply flex-1 break-inside-avoid rounded-md border border-gray-300 bg-white/20 bg-clip-padding p-5 pt-2 pb-6 backdrop-blur-lg backdrop-filter overflow-hidden w-[340px]  md:w-[300px];
 }
 .modal_card {
-   @apply flex-1 rounded-md border border-gray-300 bg-white/20 bg-clip-padding p-5 backdrop-blur-lg backdrop-filter overflow-hidden w-3/4 sm:w-1/2 xl:w-1/4;
+   @apply z-20 flex-1 rounded-md border border-gray-300 bg-white/20 bg-clip-padding p-5 backdrop-blur-lg backdrop-filter overflow-hidden w-3/4 sm:w-1/2 xl:w-1/4;
 }
 .flex-center {
    @apply flex justify-center items-center;
